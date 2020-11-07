@@ -1,5 +1,5 @@
 body {
-    font-family: sans-serif;
+    font-family: Roboto;
     padding-top: 1em;
     padding-bottom: 1em;
     font-size: 1.4em;
@@ -7,6 +7,50 @@ body {
     margin: 0 auto;
 }
 
-.CardList ul {
-    list-style-type: none;
+a {
+    text-decoration: none;
+    color: #2a75bb;
+}
+
+.welcome-title {
+    color: #ffcb05;
+    text-shadow: -2px 0 #2a75bb, 0 2px #2a75bb, 2px 0 #2a75bb, 0 -2px #2a75bb;
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.PokemonsList {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    margin: 50px 0 30px 0;
+    font-size: 20px;
+}
+
+.pokemon {
+    margin: 5px 10px;
+    width: 20%;
+}
+
+.show-more {
+    width: 20%;
+    margin: 10px auto;
+}
+
+.Spinner {
+    width: 20%;
+    margin: 0 auto;
+}
+
+.error-search {
+    color: red;
+}
+
+.search-form {
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-evenly;
 }
