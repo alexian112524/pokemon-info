@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Link, Route, Switch, Redirect } from 'react-router-dom';
 import Pokemons from './Pokemons';
 import Pokemon from './Pokemon';
+import Type from './Type';
 
 const App = () => {
     return (
@@ -16,6 +17,7 @@ const App = () => {
             <Route path="/" exact component={Pokemons} />
             <Route path="/pokemons" exact component={Pokemons} />
             <Route path="/pokemon/:name" children={<Pokemon />} />
+            <Route path="/type/:type" children={<Type />} />
             <Redirect  to="/" />           
           </Switch>
         </div>

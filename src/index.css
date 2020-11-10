@@ -45,7 +45,13 @@ a {
 }
 
 .error-search {
+    display: none;
+}
+
+.error-search-show {
+    display: block;
     color: red;
+    text-align: center;
 }
 
 .search-form {
@@ -53,4 +59,9 @@ a {
     margin: 0 auto;
     display: flex;
     justify-content: space-evenly;
+}
+
+.physical-details {
+    display: flex;
+    flex-direction: column;
 }

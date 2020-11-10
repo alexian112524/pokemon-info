@@ -1,30 +1,17 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useHistory } from "react-router-dom";
 import PokemonsList from './PokemonsList';
 import Spinner from './Spinner';
 
 const Pokemons = () => {
+  const history = useHistory();
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [pokemons, setPokemons] = useState([]);
   const [next, setNext] = useState(null);
-  const [pokemonName, setPokemonName] = useState("");
+  const [pokemonSearchedName, setPokemonSearchedName] = useState("");
   const [loading, setLoading] = useState(true);
-
-  const onSubmitPokemonSearch = useCallback(
-    (event) => {
-      event.preventDefault();
-      setPokemonName(event.target.value);
-      fetch("https://pokeapi.co/api/v2/pokemon/"+pokemonName)
-        .then(res => res.json())
-        .then(
-          (result) => {
-            console.log(result);
-          },
-          (error) => {
-            console.log(error);
-          }
-        )
-    }, []);
+  const [wrongPokemonSearch, setWrongPokemonSearch] = useState(false);
 
   useEffect(() => {
     fetch("https://pokeapi.co/api/v2/pokemon?offset=0&limit=30")
@@ -41,26 +28,50 @@ const Pokemons = () => {
         }
       )
       setLoading(false);
-  }, [loading]);
+  }, []);
 
-  function handleShowMore() {
-    setLoading(true);
-    console.log(loading);
-    if(next) {
-      fetch(next)
-        .then(res => res.json())
-        .then(
-          (result) => {
-            setPokemons(pokemons.concat(result.results));
-            setNext(result.next);
-          },
-          (error) => {
-            console.log(error.message);
-          }
-        )
+  const onChangePokemonSearch = useCallback(
+    (event) => {
+      event.preventDefault();
+      setPokemonSearchedName(event.target.value);
+    }, []);
+
+  const onSubmitPokemonSearch = useCallback(
+    (event) => {
+      event.preventDefault();
+      if(pokemonSearchedName !== "") {
+        fetch("https://pokeapi.co/api/v2/pokemon/"+pokemonSearchedName)
+          .then(res => res.json())
+          .then(
+            (result) => {
+              history.push("/pokemon/"+pokemonSearchedName);
+              setWrongPokemonSearch(false);
+            },
+            (error) => {
+              setWrongPokemonSearch(true);
+            }
+          )
+      }
+    }, [pokemonSearchedName]);
+
+  const onClickHandleShowMore = useCallback(
+    () => {
+      setLoading(true);
+      if(next) {
+        fetch(next)
+          .then(res => res.json())
+          .then(
+            (result) => {
+              setPokemons(pokemons.concat(result.results));
+              setNext(result.next);
+            },
+            (error) => {
+              console.log(error.message);
+            }
+          )
+      }
       setLoading(false);
-    }
-  }
+    }, [pokemons, next]);
 
   if(error) {
     return (
@@ -82,19 +93,20 @@ const Pokemons = () => {
         <h1 className="welcome-title">Welcome on Pokemon infos</h1>
         
         <form className="search-form">
-          <input className="search-name" type="text" value={pokemonName} name="pokemon" 
-            onChange={onSubmitPokemonSearch}
+          <input className="search-name" type="text" value={pokemonSearchedName} name="pokemon" 
+            onChange={onChangePokemonSearch}
+            onSubmit={onSubmitPokemonSearch}
             placeholder="Looking for a pokemon ?"/>
-          <button className="submitBtn" onSubmit={onSubmitPokemonSearch} type="submit">Search</button>
+          <button className="submitBtn" onClick={onSubmitPokemonSearch} type="submit">Search</button>
         </form>
-        <div className="error-search">This pokemon doesn't exist.</div>
+        <div className={wrongPokemonSearch ? "error-search-show" : "error-search"}>This pokemon doesn't exist.</div>
         
         <PokemonsList pokemons={pokemons}></PokemonsList>
         
         <div className="show-more">
           { loading ? 
             <Spinner></Spinner> : 
-            <button onClick={ handleShowMore }>
+            <button onClick={onClickHandleShowMore}>
               Show more
             </button>
           } 
