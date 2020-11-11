@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React from 'react';
 import loadingLogo from './loading-spinner.gif';
 
 const Spinner = () => {

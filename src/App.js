@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React from 'react';
 import { Link, Route, Switch, Redirect } from 'react-router-dom';
 import Pokemons from './Pokemons';
 import Pokemon from './Pokemon';
