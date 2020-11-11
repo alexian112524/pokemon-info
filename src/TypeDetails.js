@@ -4,8 +4,8 @@ const TypeDetails = (props) => {
 
     return (
         <div className="TypeDetails">
-            <h4 className="">{props.title}</h4>
-            <ul className="type-detail">
+            <h4 className="type-details-subtitle">{props.title}</h4>
+            <ul className="type-details-detail">
                 {props.details.map(elem => (
                     <li key={elem.name}>{elem.name}</li>
                 ))}

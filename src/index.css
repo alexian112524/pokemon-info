@@ -3,14 +3,30 @@ body {
     padding-top: 1em;
     padding-bottom: 1em;
     font-size: 1.4em;
-    width: 80%;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0;
+    background-color: #f8f9fa;
 }
 
 a {
     text-decoration: none;
     color: #2a75bb;
 }
+
+.navbar {
+    background-color: #f8f9fa;
+}
+
+.nav-link {
+    margin: 0 0 0 15px;
+    font-size: 24px;
+}
+
+.full-component {
+    width: 80%;
+    margin: 0 auto;
+}
+
 
 .welcome-title {
     color: #ffcb05;
@@ -21,15 +37,16 @@ a {
     margin: 20px;
 }
 
-.PokemonsList {
+.list {
     display: flex;
     flex-flow: row wrap;
-    justify-content: flex-start;
+    justify-content: center;
     margin: 50px 0 30px 0;
     font-size: 20px;
+    text-align: center;
 }
 
-.pokemon {
+.list-element {
     margin: 5px 10px;
     width: 20%;
 }
@@ -56,7 +73,7 @@ a {
 
 .search-form {
     width: 60%;
-    margin: 0 auto;
+    margin: 50px auto 0;
     display: flex;
     justify-content: space-evenly;
 }
@@ -64,4 +81,44 @@ a {
 .physical-details {
     display: flex;
     flex-direction: column;
+}
+
+.pokemon-details {
+    display: block;
+    width: 80%;
+    margin: 50px auto;
+}
+.pokemon-detail {
+    margin-bottom: 25px;
+}
+.details {
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+}
+.pokemon-details-title {
+    margin-bottom: 10px;;
+}
+
+.type-details {
+    margin: 50px auto;
+    display: block;
+    width: 80%;
+
+}
+.type-details-title {
+
+}
+.TypeDetails {
+    margin-left: 30px;
+}
+.type-details-subtitle {
+    margin-bottom: 10px;
+}
+.type-details-detail {
+    margin-left: 30px;
+}
+
+button {
+    background-color: white;
 }

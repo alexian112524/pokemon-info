@@ -10,11 +10,11 @@ const Pokemons = () => {
   const [pokemons, setPokemons] = useState([]);
   const [next, setNext] = useState(null);
   const [pokemonSearchedName, setPokemonSearchedName] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [wrongPokemonSearch, setWrongPokemonSearch] = useState(false);
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon?offset=0&limit=30")
+    fetch("https://pokeapi.co/api/v2/pokemon?offset=0&limit=1050")
       .then(res => res.json())
       .then(
         (result) => {
@@ -27,7 +27,6 @@ const Pokemons = () => {
           setError(error);
         }
       )
-      setLoading(false);
   }, []);
 
   const onChangePokemonSearch = useCallback(
@@ -64,32 +63,33 @@ const Pokemons = () => {
             (result) => {
               setPokemons(pokemons.concat(result.results));
               setNext(result.next);
+              setLoading(false);
             },
             (error) => {
               console.log(error.message);
+              setLoading(false);
             }
           )
       }
-      setLoading(false);
     }, [pokemons, next]);
 
   if(error) {
     return (
-      <div className="Pokemons">
+      <div className="Pokemons full-component">
         <h1>Erreur: {error.message}</h1>
       </div>
     );
   }
   else if(!isLoaded) {
     return (
-      <div className="Pokemons">
+      <div className="Pokemons full-component">
         <h1>Chargement...</h1>
       </div>
     );
   }
   else {
     return (
-      <div className="Pokemons">
+      <div className="Pokemons full-component">
         <h1 className="welcome-title">Welcome on Pokemon infos</h1>
         
         <form className="search-form">
@@ -106,9 +106,11 @@ const Pokemons = () => {
         <div className="show-more">
           { loading ? 
             <Spinner></Spinner> : 
+            next ? 
             <button onClick={onClickHandleShowMore}>
               Show more
-            </button>
+            </button> :
+            <span></span>
           } 
         </div>
       </div>

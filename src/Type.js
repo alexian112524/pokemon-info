@@ -42,6 +42,7 @@ const Type = (props) => {
             <h1 className="welcome-title">{capitalize(type)}</h1>
 
             <div className="type-details">
+                <h3 className="type-details-title">Fight informations</h3>
                 <TypeDetails title="Weak defense against" details={weakDefense}></TypeDetails>
                 <TypeDetails title="Strong attack against" details={strongAttack}></TypeDetails>
                 <TypeDetails title="Strong defense against" details={strongDefense}></TypeDetails>
@@ -50,7 +51,7 @@ const Type = (props) => {
                 <TypeDetails title="No damage from" details={noDamageFrom}></TypeDetails>
             </div>
 
-            <div className="pokemons-type">
+            <div className="pokemons-type full-component">
                 <h3>Pokemons of type {type}</h3>
                 <PokemonsList pokemons={pokemons}></PokemonsList>
             </div>
