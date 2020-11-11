@@ -52,13 +52,9 @@ a {
 }
 
 .show-more {
-    width: 20%;
-    margin: 10px auto;
-}
-
-.Spinner {
-    width: 20%;
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
 }
 
 .error-search {
@@ -117,6 +113,7 @@ a {
 }
 .type-details-detail {
     margin-left: 30px;
+    font-size: 18px;
 }
 
 button {
