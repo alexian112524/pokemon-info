@@ -14,7 +14,7 @@ const Pokemons = () => {
   const [wrongPokemonSearch, setWrongPokemonSearch] = useState(false);
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon?offset=0&limit=1050")
+    fetch("https://pokeapi.co/api/v2/pokemon?offset=0&limit=30")
       .then(res => res.json())
       .then(
         (result) => {
