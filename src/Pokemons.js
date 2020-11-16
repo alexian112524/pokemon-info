@@ -27,7 +27,7 @@ const Pokemons = () => {
           setError(error);
         }
       )
-  }, []);
+  });
 
   const onChangePokemonSearch = useCallback(
     (event) => {
@@ -51,7 +51,7 @@ const Pokemons = () => {
             }
           )
       }
-    }, [pokemonSearchedName]);
+    }, [pokemonSearchedName, history]);
 
   const onClickHandleShowMore = useCallback(
     () => {
