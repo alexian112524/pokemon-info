@@ -14,7 +14,7 @@ const Pokemons = () => {
   const [wrongPokemonSearch, setWrongPokemonSearch] = useState(false);
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon?offset=0&limit=30")
+    fetch("https://pokeapi.co/api/v2/pokemon?offset=0&limit=1050")
       .then(res => res.json())
       .then(
         (result) => {
@@ -56,12 +56,15 @@ const Pokemons = () => {
   const onClickHandleShowMore = useCallback(
     () => {
       setLoading(true);
+      console.log(next);
       if(next) {
         fetch(next)
           .then(res => res.json())
           .then(
             (result) => {
-              setPokemons(pokemons.concat(result.results));
+              console.log(result);
+              setPokemons([...pokemons, ...result.results]);
+              console.log(pokemons);
               setNext(result.next);
               setLoading(false);
             },

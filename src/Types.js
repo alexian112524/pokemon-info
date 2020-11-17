@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 const Types = () => {
     const [types, setTypes] = useState([]);
     const [error, setError] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         fetch("https://pokeapi.co/api/v2/type")
@@ -11,9 +12,11 @@ const Types = () => {
         .then(
             (result) => {
                 setTypes(result.results);
+                setIsLoading(false);
             },
             (error) => {
                 setError(true);
+                setIsLoading(false);
             }
         )
         
@@ -23,6 +26,13 @@ const Types = () => {
         return (
             <div className="Types full-component">
                 <h1>{error}</h1>
+            </div>
+        );
+    }
+    else if(isLoading) {
+        return (
+            <div className="Types full-component">
+                <h1>Chargement...</h1>
             </div>
         );
     }
